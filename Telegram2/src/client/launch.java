@@ -1,3 +1,4 @@
+package client;
 import org.telegram.*;
 public class launch {
 	private AppInfo ai;
