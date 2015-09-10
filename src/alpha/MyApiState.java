@@ -7,6 +7,7 @@ import org.telegram.api.TLConfig;
 import org.telegram.api.engine.storage.AbsApiState;
 import org.telegram.mtproto.state.AbsMTProtoState;
 import org.telegram.mtproto.state.ConnectionInfo;
+import org.telegram.mtproto.state.KnownSalt;
 
 public class MyApiState implements AbsApiState {
 	
@@ -53,16 +54,38 @@ public class MyApiState implements AbsApiState {
 		}
 	}
 
-	@Override
-	public AbsMTProtoState getMtProtoState(int dcId) {
-		int index = authenticatedDCs.indexOf(dcId);
-		if (index != -1){ //Check if a Datacenter with the given ID exists, index is -1 if not
-			return authenticatedDCs.get(index).getMtProtoState();
-		} else {
-			return null; //TODO: Returning null might be bad?
-		}
-	}
+//	@Override
+//	public AbsMTProtoState getMtProtoState(int dcId) {
+//		int index = authenticatedDCs.indexOf(dcId);
+//		if (index != -1){ //Check if a Datacenter with the given ID exists, index is -1 if not
+//			return authenticatedDCs.get(index).getMtProtoState();
+//		} else {
+//			return null; //TODO: Returning null might be bad?
+//		}
+//	}
 
+	public synchronized AbsMTProtoState getMtProtoState(final int dcId){
+		return new AbsMTProtoState(){
+			private KnownSalt[] knownSalts = new KnownSalt[0];
+			
+			public byte[] getAuthKey(){
+				return MyApiState.this.getAuthKey(dcId);
+			}
+			
+			public ConnectionInfo[] getAvailableConnections(){
+				return MyApiState.this.getAvailableConnections(dcId);
+			}
+			
+			public KnownSalt[] readKnownSalts(){
+				return knownSalts;
+			}
+			
+			protected void writeKnownSalts(KnownSalt[] salts){
+				knownSalts = salts;
+			}
+		};
+	}
+	
 	@Override
 	public int getPrimaryDc() {
 		return primaryDc;

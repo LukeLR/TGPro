@@ -46,10 +46,10 @@ public class ProTGTest {
 				}
 		);
 		
-		api.switchToDc(1);
+//		api.switchToDc(1);
 		
 		try {
-			TLConfig config = api.doRpcCall(new TLRequestHelpGetConfig()); //As proposed by [1], Eclipse wants a try-catch-clause for this
+			TLConfig config = api.doRpcCallNonAuth(new TLRequestHelpGetConfig()); //As proposed by [1], Eclipse wants a try-catch-clause for this
 			//TODO: Maybe sending this TLConfig to ApiState?
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
