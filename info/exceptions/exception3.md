@@ -4,7 +4,7 @@
 ##Research
 
 ##Fix
-Re-implement MyApiState: remove Datacenter-Structure, add Hashmaps for connections, keys and authorization states, analogue to org.telegram.bot.engine.MemoryApiState [here][1] and [here][2].
+Re-implement MyApiState: remove Datacenter-Structure, add Hashmaps for connections, keys and authorization states, analogue to org.telegram.bot.engine.MemoryApiState [here][1] and [here][2]. Apply config sent by main class to saved config in MyApiState.
 
 ##Exception output
 
