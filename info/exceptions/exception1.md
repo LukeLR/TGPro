@@ -37,6 +37,7 @@ TelegramApi#1001:Timeout Iteration
 
 ###Related Comments:
 ####from MyApiState.java
+```
 /*
  * Adding a default Datacenter with ID 0, ID 0 is the primaryDC for now. Telegram will
  * start by looking for the primaryDC, and therefore this default Datacenter will be
@@ -49,8 +50,10 @@ TelegramApi#1001:Timeout Iteration
  * was set, the application always threw a NullPointerException, as documented in
  * ../info/exceptions/exception1.md
  */
+ ```
  
 ####from Datacenter.java
+```
 /*
  * Every Datacenter is given a default connection to DC 2 (149.154.167.40:443) by default,
  * which is proposed for my developer account at https://my.telegram.org/apps. This is
@@ -60,3 +63,4 @@ TelegramApi#1001:Timeout Iteration
  * was set, the application always threw a NullPointerException, as documented in
  * ../info/exceptions/exception1.md
  */
+```
