@@ -1,9 +1,13 @@
 package alpha;
 
+import java.io.IOException;
+
 import org.telegram.api.TLAbsUpdates;
+import org.telegram.api.TLConfig;
 import org.telegram.api.engine.ApiCallback;
 import org.telegram.api.engine.AppInfo;
 import org.telegram.api.engine.TelegramApi;
+import org.telegram.api.requests.TLRequestHelpGetConfig;
 import org.telegram.mtproto.pq.Authorizer;
 
 public class ProTGTest {
@@ -38,10 +42,18 @@ public class ProTGTest {
 				}
 		);
 		
+		try {
+			TLConfig config = api.doRpcCall(new TLRequestHelpGetConfig()); //As proposed by [1], Eclipse wants a try-catch-clause for this
+			//TODO: Maybe sending this TLConfig to ApiState?
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 }
 
 /*
  * [1] https://github.com/ex3ndr/telegram-api#rpc-calls
+ *     offline to be found at ProTG/lib/telegram-api/Readme.md#RPC-calls
  */
