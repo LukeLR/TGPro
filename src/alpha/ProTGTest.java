@@ -2,8 +2,11 @@ package alpha;
 
 import java.io.IOException;
 
+import logging.Logger;
+
 import org.telegram.api.TLAbsUpdates;
 import org.telegram.api.TLConfig;
+import org.telegram.api.auth.TLCheckedPhone;
 import org.telegram.api.engine.ApiCallback;
 import org.telegram.api.engine.AppInfo;
 import org.telegram.api.engine.TelegramApi;
@@ -43,6 +46,8 @@ public class ProTGTest {
 				}
 		);
 		
+		api.switchToDc(1);
+		
 		try {
 			TLConfig config = api.doRpcCall(new TLRequestHelpGetConfig()); //As proposed by [1], Eclipse wants a try-catch-clause for this
 			//TODO: Maybe sending this TLConfig to ApiState?
@@ -51,10 +56,11 @@ public class ProTGTest {
 			e.printStackTrace();
 		}
 		
-		
-		//Doing stuff on my own, since [1] doesn't reach any further.
+		//Doing stuff on my own now, since [1] doesn't reach any further.
+		Logger.logMessage('I', new ProTGTest(), "Here I am!");
 		try {
-			api.doRpcCall(new TLRequestAuthCheckPhone("+4915781664674"));
+			TLCheckedPhone myPhone = api.doRpcCall(new TLRequestAuthCheckPhone("+4915781664674"));
+			Logger.logMessage('I', new ProTGTest(), "Info for phone: Invited: " + String.valueOf(myPhone.getPhoneInvited()) + ", registered: " + String.valueOf(myPhone.getPhoneRegistered()));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

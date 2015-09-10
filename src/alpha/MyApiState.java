@@ -10,11 +10,27 @@ import org.telegram.mtproto.state.ConnectionInfo;
 
 public class MyApiState implements AbsApiState {
 	
-	private int primaryDc = 2; //Test configuration "DC 2" (149.154.167.40:443) from https://my.telegram.org/apps for my application, production configuration DC 2: 149.154.167.50:443
+	private int primaryDc = 0; //Test configuration "DC 2" (149.154.167.40:443) from https://my.telegram.org/apps for my application, production configuration DC 2: 149.154.167.50:443
 	
 	private List<Datacenter> authenticatedDCs = new LinkedList<Datacenter>();
 	
 	private TLConfig config = new TLConfig(); //TODO: Better be null?
+	
+	public MyApiState(){
+		super();
+//		authenticatedDCs.add(new Datacenter(0));
+		/*
+		 * Adding a default Datacenter with ID 0, ID 0 is the primaryDC for now. Telegram will
+		 * start by looking for the primaryDC, and therefore this default Datacenter will be
+		 * asked. This happens at org.telegram.api.engine.TelegramApi.java:887 and :946.
+		 * Every Datacenter is given a default connection to DC 2 (149.154.167.40:443) by default,
+		 * which is proposed for my developer account at https://my.telegram.org/apps. This is
+		 * probably done for testing purposes, since I guess, that telegram should find it's
+		 * datacenters on it's own, but for now it makes sure, that the application knows at least
+		 * one connection to a telegram server it can use, and should use by default. Before this
+		 * was set, the application always threw 
+		 */
+	}
 
 	@Override
 	public byte[] getAuthKey(int dcId) {

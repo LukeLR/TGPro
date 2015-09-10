@@ -16,6 +16,7 @@ public class Datacenter {
 	
 	public Datacenter(int dcId){
 		this.id = dcId;
+//		connections.add(new ConnectionInfo(1,2,"149.154.167.40",443));
 	}
 	
 	public void setID(int dcId){
