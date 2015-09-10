@@ -6,7 +6,7 @@ This exception occured when starting the telegram application in its early stage
 I found out, that the NullPointerException was caused in a line where the ApiState was asked for a DC's MTProtoState (for checking Server salts). These were all null for every DC by default, if not set manually
 
 ##Fix
-I rewrote the getMTProtoState(int dcId)-Method in alpha.MyApiState to follow the scheme of the getMTProtoState-Method from the org.telegram.bot.engine.MemoryApiState from the telegram bot (I used this as an example for learning, found [here][1] or (my fork here)[2]). 
+I rewrote the getMTProtoState(int dcId)-Method in alpha.MyApiState to follow the scheme of the getMTProtoState-Method from the org.telegram.bot.engine.MemoryApiState from the telegram bot (I used this as an example for learning, found [here][1] or my fork [here][2]). 
 
 ```
 TelegramApi#1001:Phase 0 in 1 ms
@@ -55,4 +55,4 @@ TelegramApi#1001:Sender iteration
 ```
 
 [1]: https://github.com/ex3ndr/telegram-bot
-[2] https://github.com/LukeLR/telegram-bot
+[2]: https://github.com/LukeLR/telegram-bot
