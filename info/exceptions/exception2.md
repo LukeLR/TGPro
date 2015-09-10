@@ -8,6 +8,7 @@ I found out, that the NullPointerException was caused in a line where the ApiSta
 ##Fix
 I rewrote the getMTProtoState(int dcId)-Method in alpha.MyApiState to follow the scheme of the getMTProtoState-Method from the org.telegram.bot.engine.MemoryApiState from the telegram bot (I used this as an example for learning, found [here][1] or my fork [here][2]). It will now return a MTProtoState-Object for every DC Id requested, with no known salts set and the auth key and available connections of the DC.
 
+##Exception output
 ```
 TelegramApi#1001:Phase 0 in 1 ms
 TelegramApi#1001:Phase 1 in 96 ms
