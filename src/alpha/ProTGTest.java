@@ -16,9 +16,9 @@ import org.telegram.mtproto.pq.Authorizer;
 
 public class ProTGTest {
 	
-	
 	public static void main(String[] args) {
-		TelegramApi api = new TelegramApi(new MyApiState(),
+		MyApiState state = new MyApiState();
+		TelegramApi api = new TelegramApi(state,
 				new AppInfo(14929, "myDeviceModel", "mySystemVersion", "myAppVersion", "myLangCode"),
 				new ApiCallback(){ //Error: Cannot instantiate ApiCallback, opening { seems to fix. [1]
 			
@@ -49,12 +49,13 @@ public class ProTGTest {
 //		api.switchToDc(1);
 		
 		try {
-			TLConfig config = api.doRpcCallNonAuth(new TLRequestHelpGetConfig()); //As proposed by [1], Eclipse wants a try-catch-clause for this
+			state.updateSettings(api.doRpcCallNonAuth(new TLRequestHelpGetConfig())); //As proposed by [1]. Eclipse wants a try-catch-clause for this. Updating ApiState with new settings now, analogue to [2].
 			//TODO: Maybe sending this TLConfig to ApiState?
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		
 		//Doing stuff on my own now, since [1] doesn't reach any further.
 		Logger.logMessage('I', new ProTGTest(), "Here I am!");
@@ -71,4 +72,6 @@ public class ProTGTest {
 /*
  * [1] https://github.com/ex3ndr/telegram-api#rpc-calls
  *     offline to be found at ProTG/lib/telegram-api/Readme.md#RPC-calls
+ * [2] https://github.com/LukeLR/telegram-bot/blob/master/app/src/main/java/org/telegram/bot/Application.java login()-method
+ *     https://github.com/ex3ndr/telegram-bot/blob/master/app/src/main/java/org/telegram/bot/Application.java login()-method
  */
