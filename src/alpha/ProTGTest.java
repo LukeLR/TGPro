@@ -7,6 +7,7 @@ import org.telegram.api.TLConfig;
 import org.telegram.api.engine.ApiCallback;
 import org.telegram.api.engine.AppInfo;
 import org.telegram.api.engine.TelegramApi;
+import org.telegram.api.requests.TLRequestAuthCheckPhone;
 import org.telegram.api.requests.TLRequestHelpGetConfig;
 import org.telegram.mtproto.pq.Authorizer;
 
@@ -50,6 +51,14 @@ public class ProTGTest {
 			e.printStackTrace();
 		}
 		
+		
+		//Doing stuff on my own, since [1] doesn't reach any further.
+		try {
+			api.doRpcCall(new TLRequestAuthCheckPhone("+4915781664674"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
 
