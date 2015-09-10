@@ -31,7 +31,7 @@ Planned features / feature ideas
 - [ ] Delayed messaging
 - [ ] export profile pictues
 - [ ] hashtags
-- [ ] file transfers
+- [ ] file transfers
 - [ ] GIF support
 	- [ ] displaying GIFs
 	- [ ] searching for GIFs online
