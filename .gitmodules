@@ -1,3 +1,6 @@
 [submodule "lib/telegram-api"]
 	path = lib/telegram-api
 	url = https://github.com/LukeLR/telegram-api.git
+[submodule "lib/LukeUtils"]
+	path = lib/LukeUtils
+	url = https://github.com/LukeLR/LukeUtils
