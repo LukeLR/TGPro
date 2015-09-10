@@ -1,0 +1,39 @@
+#TODO for ProTG
+Planned features / feature ideas
+
+- [ ] Saving entire chat history locally (chat database), keep in sync with online version
+- [ ] Export of chat history...
+	- [ ] ... as HTML
+		 - [ ] include profile pictures for group chats
+		 - [ ] include images in chats
+	- [ ] ... as PDF
+		- [ ] include Unicode-emojis
+		- [ ] include profile pictures for group chats
+		- [ ] include images in chats
+	- [ ] ... as TXT
+	- [ ] ... as markdown
+- [ ] Include Unicode-emojis
+- [ ] Chat analytics
+	- [ ] messages to each user / group chat per day/week/month/year/custom timespan
+	- [ ] messages from each user privately and to each group chats per day/week/month/year/custom timespan
+	- [ ] graph of member number over time (joins / leaves)
+	- [ ] most active hours per day / days per week per user in single and group chats
+	- [ ] message number per chat
+	- [ ] overall message number
+	- [ ] message length per chat / per user in group chats
+	- [ ] overall message length
+	- [ ] message length to a given time (hours per day / days per week)
+	- [ ] overall filesize sent / received
+	- [ ] filesize sent / received per chat
+	- [ ] filesize sent / received per user privately, to group chats and to other users for personal transfers
+- [ ] Chat implementation (chat graphically with each user)
+- [ ] Command line interface (similar to tg-cli)
+- [ ] Delayed messaging
+- [ ] export profile pictues
+- [ ] hashtags
+- [ ] file transfers
+- [ ] GIF support
+	- [ ] displaying GIFs
+	- [ ] searching for GIFs online
+- [ ] themes
+	- [ ] themes for exported documents (HTML / PDF)
