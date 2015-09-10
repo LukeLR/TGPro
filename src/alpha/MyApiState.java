@@ -8,7 +8,7 @@ import org.telegram.api.engine.storage.AbsApiState;
 import org.telegram.mtproto.state.AbsMTProtoState;
 import org.telegram.mtproto.state.ConnectionInfo;
 
-public class MyAbsApiState implements AbsApiState {
+public class MyApiState implements AbsApiState {
 	
 	private int primaryDc = 2; //Test configuration "DC 2" (149.154.167.40:443) from https://my.telegram.org/apps for my application, production configuration DC 2: 149.154.167.50:443
 	

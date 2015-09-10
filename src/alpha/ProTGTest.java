@@ -10,7 +10,7 @@ public class ProTGTest {
 	
 	
 	public static void main(String[] args) {
-		TelegramApi api = new TelegramApi(new MyAbsApiState(), new AppInfo(14929, "myDeviceModel", "mySystemVersion", "myAppVersion", "myLangCode"), new ApiCallback(){ //Error: Cannot instantiate ApiCallback, opening { seems to fix. [1]
+		TelegramApi api = new TelegramApi(new MyApiState(), new AppInfo(14929, "myDeviceModel", "mySystemVersion", "myAppVersion", "myLangCode"), new ApiCallback(){ //Error: Cannot instantiate ApiCallback, opening { seems to fix. [1]
 			
 			//@Override //Proposed by [1], but doesn't work here (?)
 			public void onApiDies(TelegramApi api){
