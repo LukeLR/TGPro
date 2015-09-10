@@ -18,7 +18,7 @@ public class MyApiState implements AbsApiState {
 	
 	public MyApiState(){
 		super();
-//		authenticatedDCs.add(new Datacenter(0));
+		authenticatedDCs.add(new Datacenter(0));
 		/*
 		 * Adding a default Datacenter with ID 0, ID 0 is the primaryDC for now. Telegram will
 		 * start by looking for the primaryDC, and therefore this default Datacenter will be
