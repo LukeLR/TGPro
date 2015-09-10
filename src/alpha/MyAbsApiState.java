@@ -1,11 +1,18 @@
 package alpha;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.telegram.api.TLConfig;
 import org.telegram.api.engine.storage.AbsApiState;
 import org.telegram.mtproto.state.AbsMTProtoState;
 import org.telegram.mtproto.state.ConnectionInfo;
 
 public class MyAbsApiState implements AbsApiState {
+	
+	private int primaryDc = 2; //Test configuration "DC 2" (149.154.167.40:443) from https://my.telegram.org/apps for my application, production configuration DC 2: 149.154.167.50:443
+	
+	private List<Integer> authenticatedDCs = new LinkedList<Integer>();
 
 	@Override
 	public byte[] getAuthKey(int arg0) {
@@ -27,14 +34,13 @@ public class MyAbsApiState implements AbsApiState {
 
 	@Override
 	public int getPrimaryDc() {
-		// TODO Auto-generated method stub
-		return 0;
+		return primaryDc;
 	}
 
 	@Override
-	public boolean isAuthenticated(int arg0) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isAuthenticated(int dcId) {
+		int index = authenticatedDCs.indexOf(dcId);
+		return index != -1;
 	}
 
 	@Override
@@ -56,15 +62,20 @@ public class MyAbsApiState implements AbsApiState {
 	}
 
 	@Override
-	public void setAuthenticated(int arg0, boolean arg1) {
-		// TODO Auto-generated method stub
-		
+	public void setAuthenticated(int dcId, boolean auth) {
+		if (auth){
+			authenticatedDCs.add(dcId);
+		} else {
+			int index = authenticatedDCs.indexOf(dcId);
+			if (index != -1){
+				authenticatedDCs.remove(index);
+			}
+		}
 	}
 
 	@Override
-	public void setPrimaryDc(int arg0) {
-		// TODO Auto-generated method stub
-		
+	public void setPrimaryDc(int ip) {
+		primaryDc = ip;
 	}
 
 	@Override

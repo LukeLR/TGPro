@@ -35,8 +35,6 @@ public class ProTGTest {
 			}
 		});
 //		MyApiStorage apis = new MyApiStorage();
-		MyAbsApiState apiState = new MyAbsApiState();
-		AppInfo ai = new AppInfo(14929, "myDeviceModel", "mySystemVersion", "myAppVersion", "myLangCode");
 	}
 }
 
