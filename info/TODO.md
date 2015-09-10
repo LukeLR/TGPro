@@ -3,7 +3,7 @@ Planned features / feature ideas
 
 - [ ] Saving entire chat history locally (chat database), keep in sync with online version
 - [ ] Export of chat history...
-	- [ ] as HTML
+	- [ ] ... as HTML
 		 - [ ] include profile pictures for group chats
 		 - [ ] include images in chats
 	- [ ] as PDF
