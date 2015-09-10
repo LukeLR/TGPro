@@ -28,7 +28,8 @@ public class MyApiState implements AbsApiState {
 		 * probably done for testing purposes, since I guess, that telegram should find it's
 		 * datacenters on it's own, but for now it makes sure, that the application knows at least
 		 * one connection to a telegram server it can use, and should use by default. Before this
-		 * was set, the application always threw 
+		 * was set, the application always threw a NullPointerException, as documented in
+		 * ../info/exceptions/exception1.md
 		 */
 	}
 
