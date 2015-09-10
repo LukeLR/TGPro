@@ -17,27 +17,31 @@ public class MyApiState implements AbsApiState {
 	@Override
 	public byte[] getAuthKey(int dcId) {
 		int index = authenticatedDCs.indexOf(new Datacenter(dcId));
-		if (index != -1){
+		if (index != -1){ //Check if a Datacenter with the given ID exists, index is -1 if not
 			return authenticatedDCs.get(index).getAuthKey();
 		} else {
-			return null;
+			return null; //TODO: Returning null might be bad?
 		}
 	}
 
 	@Override
 	public ConnectionInfo[] getAvailableConnections(int dcId) {
 		int index = authenticatedDCs.indexOf(new Datacenter(dcId));
-		if (index != -1){
+		if (index != -1){ //Check if a Datacenter with the given ID exists, index is -1 if not
 			return authenticatedDCs.get(index).getConnections();
 		} else {
-			return null;
+			return null; //TODO: Returning null might be bad?
 		}
 	}
 
 	@Override
-	public AbsMTProtoState getMtProtoState(int arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	public AbsMTProtoState getMtProtoState(int dcId) {
+		int index = authenticatedDCs.indexOf(dcId);
+		if (index != -1){ //Check if a Datacenter with the given ID exists, index is -1 if not
+			return authenticatedDCs.get(index).getMtProtoState();
+		} else {
+			return null; //TODO: Returning null might be bad?
+		}
 	}
 
 	@Override
@@ -54,7 +58,7 @@ public class MyApiState implements AbsApiState {
 	@Override
 	public void putAuthKey(int dcId, byte[] key) {
 		int index = authenticatedDCs.indexOf(new Datacenter(dcId));
-		if (index != -1){
+		if (index != -1){ //Check if a Datacenter with the given ID exists, index is -1 if not
 			authenticatedDCs.get(index).setAuthKey(key);
 		}
 	}
@@ -78,7 +82,7 @@ public class MyApiState implements AbsApiState {
 			authenticatedDCs.add(new Datacenter(dcId));
 		} else {
 			int index = authenticatedDCs.indexOf(new Datacenter(dcId));
-			if (index != -1){
+			if (index != -1){ //Check if a Datacenter with the given ID exists, index is -1 if not
 				authenticatedDCs.remove(index);
 			}
 		}
@@ -90,7 +94,7 @@ public class MyApiState implements AbsApiState {
 	}
 
 	@Override
-	public void updateSettings(TLConfig arg0) {
+	public void updateSettings(TLConfig config) {
 		// TODO Auto-generated method stub
 		
 	}
