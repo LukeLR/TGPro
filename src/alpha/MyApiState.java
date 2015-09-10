@@ -13,6 +13,8 @@ public class MyApiState implements AbsApiState {
 	private int primaryDc = 2; //Test configuration "DC 2" (149.154.167.40:443) from https://my.telegram.org/apps for my application, production configuration DC 2: 149.154.167.50:443
 	
 	private List<Datacenter> authenticatedDCs = new LinkedList<Datacenter>();
+	
+	private TLConfig config = new TLConfig(); //TODO: Better be null?
 
 	@Override
 	public byte[] getAuthKey(int dcId) {
@@ -95,8 +97,7 @@ public class MyApiState implements AbsApiState {
 
 	@Override
 	public void updateSettings(TLConfig config) {
-		// TODO Auto-generated method stub
-		
+		this.config = config;
 	}
 	
 }
