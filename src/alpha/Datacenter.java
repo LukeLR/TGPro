@@ -16,7 +16,16 @@ public class Datacenter {
 	
 	public Datacenter(int dcId){
 		this.id = dcId;
-//		connections.add(new ConnectionInfo(1,2,"149.154.167.40",443));
+		connections.add(new ConnectionInfo(1,2,"149.154.167.40",443));
+		/*
+		 * Every Datacenter is given a default connection to DC 2 (149.154.167.40:443) by default,
+		 * which is proposed for my developer account at https://my.telegram.org/apps. This is
+		 * probably done for testing purposes, since I guess, that telegram should find it's
+		 * datacenters on it's own, but for now it makes sure, that the application knows at least
+		 * one connection to a telegram server it can use, and should use by default. Before this
+		 * was set, the application always threw a NullPointerException, as documented in
+		 * ../info/exceptions/exception1.md
+		 */
 	}
 	
 	public void setID(int dcId){
