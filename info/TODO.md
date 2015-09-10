@@ -6,12 +6,12 @@ Planned features / feature ideas
 	- [ ] ... as HTML
 		 - [ ] include profile pictures for group chats
 		 - [ ] include images in chats
-	- [ ] as PDF
+	- [ ] ... as PDF
 		- [ ] include Unicode-emojis
 		- [ ] include profile pictures for group chats
 		- [ ] include images in chats
-	- [ ] as TXT
-	- [ ] as markdown
+	- [ ] ... as TXT
+	- [ ] ... as markdown
 - [ ] Include Unicode-emojis
 - [ ] Chat analytics
 	- [ ] messages to each user / group chat per day/week/month/year/custom timespan
