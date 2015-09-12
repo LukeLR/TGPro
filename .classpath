@@ -6,5 +6,6 @@
 	<classpathentry kind="src" path="lib/telegram-api/mtproto/src"/>
 	<classpathentry kind="src" path="lib/LukeUtils/src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/telegram-api/libs/tl-api-v12.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
