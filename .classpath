@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="lib/telegram-api/tl-core/src"/>
-	<classpathentry kind="src" path="lib/telegram-api/src"/>
-	<classpathentry kind="src" path="lib/telegram-api/mtproto/src"/>
-	<classpathentry kind="src" path="lib/LukeUtils/src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="lib/telegram-api/libs/tl-api-v12.jar"/>
+	<classpathentry kind="lib" path="lib/telegram-api-1.1.127-shadow.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
