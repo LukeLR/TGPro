@@ -4,10 +4,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.telegram.api.TLConfig;
-import main.java.org.telegram.api.engine.storage.AbsApiState;
-import main.java.org.telegram.mtproto.state.AbsMTProtoState;
-import main.java.org.telegram.mtproto.state.ConnectionInfo;
-import main.java.org.telegram.mtproto.state.KnownSalt;
+import org.telegram.api.engine.storage.AbsApiState;
+import org.telegram.mtproto.state.AbsMTProtoState;
+import org.telegram.mtproto.state.ConnectionInfo;
+import org.telegram.mtproto.state.KnownSalt;
 
 public class MyApiState implements AbsApiState {
 	

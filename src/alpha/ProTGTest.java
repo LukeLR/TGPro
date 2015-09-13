@@ -7,12 +7,12 @@ import logging.Logger;
 import org.telegram.api.TLAbsUpdates;
 import org.telegram.api.TLConfig;
 import org.telegram.api.auth.TLCheckedPhone;
-import main.java.org.telegram.api.engine.ApiCallback;
-import main.java.org.telegram.api.engine.AppInfo;
-import main.java.org.telegram.api.engine.TelegramApi;
+import org.telegram.api.engine.ApiCallback;
+import org.telegram.api.engine.AppInfo;
+import org.telegram.api.engine.TelegramApi;
 import org.telegram.api.requests.TLRequestAuthCheckPhone;
 import org.telegram.api.requests.TLRequestHelpGetConfig;
-import main.java.org.telegram.mtproto.pq.Authorizer;
+import org.telegram.mtproto.pq.Authorizer;
 
 public class ProTGTest {
 	

@@ -3,8 +3,8 @@ package alpha;
 import java.util.LinkedList;
 import java.util.List;
 
-import main.java.org.telegram.mtproto.state.AbsMTProtoState;
-import main.java.org.telegram.mtproto.state.ConnectionInfo;
+import org.telegram.mtproto.state.AbsMTProtoState;
+import org.telegram.mtproto.state.ConnectionInfo;
 
 import logging.Logger;
 
