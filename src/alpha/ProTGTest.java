@@ -7,18 +7,18 @@ import logging.Logger;
 import org.telegram.api.TLAbsUpdates;
 import org.telegram.api.TLConfig;
 import org.telegram.api.auth.TLCheckedPhone;
-import org.telegram.api.engine.ApiCallback;
-import org.telegram.api.engine.AppInfo;
-import org.telegram.api.engine.TelegramApi;
+import main.java.org.telegram.api.engine.ApiCallback;
+import main.java.org.telegram.api.engine.AppInfo;
+import main.java.org.telegram.api.engine.TelegramApi;
 import org.telegram.api.requests.TLRequestAuthCheckPhone;
 import org.telegram.api.requests.TLRequestHelpGetConfig;
-import org.telegram.mtproto.pq.Authorizer;
+import main.java.org.telegram.mtproto.pq.Authorizer;
 
 public class ProTGTest {
 	
 	public static void main(String[] args) {
 		MyApiState state = new MyApiState();
-		TelegramApi api = new TelegramApi(state,
+		org.telegram.api.engine.TelegramApi api = new TelegramApi(state,
 				new AppInfo(14929, "myDeviceModel", "mySystemVersion", "myAppVersion", "myLangCode"),
 				new ApiCallback(){ //Error: Cannot instantiate ApiCallback, opening { seems to fix. [1]
 			
