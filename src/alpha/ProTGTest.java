@@ -46,7 +46,9 @@ public class ProTGTest {
 				}
 		);
 		
-//		api.switchToDc(1);
+		api.switchToDc(0);
+		
+		Logger.logMessage('I', new ProTGTest(), "Starting...");
 		
 		try {
 			state.updateSettings(api.doRpcCallNonAuth(new TLRequestHelpGetConfig())); //As proposed by [1]. Eclipse wants a try-catch-clause for this. Updating ApiState with new settings now, analogue to [2].
@@ -60,8 +62,12 @@ public class ProTGTest {
 		//Doing stuff on my own now, since [1] doesn't reach any further.
 		Logger.logMessage('I', new ProTGTest(), "Here I am!");
 		try {
+<<<<<<< HEAD
 			Logger.logMessage('I', new ProTGTest(), "Probing phone number...");
 			TLCheckedPhone myPhone = api.doRpcCallNonAuth(new TLRequestAuthCheckPhone("+491773888644"));
+=======
+			TLCheckedPhone myPhone = api.doRpcCallNonAuth(new TLRequestAuthCheckPhone("+4915781664674"));
+>>>>>>> e53390ce05814c18a20b86e7e7829811fd4fa5f3
 			Logger.logMessage('I', new ProTGTest(), "Info for phone: Invited: " + String.valueOf(myPhone.getPhoneInvited()) + ", registered: " + String.valueOf(myPhone.getPhoneRegistered()));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
