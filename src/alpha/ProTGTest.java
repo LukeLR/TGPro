@@ -17,7 +17,7 @@ import org.telegram.mtproto.pq.Authorizer;
 public class ProTGTest {
 	
 	public static void main(String[] args) {
-		MyApiState state = new MyApiState();
+		SecondApiState state = new SecondApiState(true);
 		org.telegram.api.engine.TelegramApi api = new TelegramApi(state,
 				new AppInfo(14929, "myDeviceModel", "mySystemVersion", "myAppVersion", "myLangCode"),
 				new ApiCallback(){ //Error: Cannot instantiate ApiCallback, opening { seems to fix. [1]
@@ -60,10 +60,12 @@ public class ProTGTest {
 		//Doing stuff on my own now, since [1] doesn't reach any further.
 		Logger.logMessage('I', new ProTGTest(), "Here I am!");
 		try {
-			TLCheckedPhone myPhone = api.doRpcCall(new TLRequestAuthCheckPhone("+4915781664674"));
+			Logger.logMessage('I', new ProTGTest(), "Probing phone number...");
+			TLCheckedPhone myPhone = api.doRpcCallNonAuth(new TLRequestAuthCheckPhone("+491773888644"));
 			Logger.logMessage('I', new ProTGTest(), "Info for phone: Invited: " + String.valueOf(myPhone.getPhoneInvited()) + ", registered: " + String.valueOf(myPhone.getPhoneRegistered()));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			Logger.logMessage('E', new ProTGTest(), "An error occured");
 			e.printStackTrace();
 		}
 	}

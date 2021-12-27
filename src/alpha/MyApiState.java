@@ -1,9 +1,12 @@
 package alpha;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.telegram.api.TLConfig;
+import org.telegram.api.TLDcOption;
 import org.telegram.api.engine.storage.AbsApiState;
 import org.telegram.mtproto.state.AbsMTProtoState;
 import org.telegram.mtproto.state.ConnectionInfo;
@@ -11,16 +14,21 @@ import org.telegram.mtproto.state.KnownSalt;
 
 public class MyApiState implements AbsApiState {
 	
-	private int primaryDc = 0; //Test configuration "DC 2" (149.154.167.40:443) from https://my.telegram.org/apps for my application, production configuration DC 2: 149.154.167.50:443
+	private HashMap<Integer, ConnectionInfo[]> connections = new HashMap<Integer, ConnectionInfo[]>();
+	private HashMap<Integer, byte[]> keys = new HashMap<Integer, byte[]>();
+	private HashMap<Integer, Boolean> auths = new HashMap<Integer, Boolean>();
 	
-	private List<Datacenter> authenticatedDCs = new LinkedList<Datacenter>();
+	private int primaryDc = 1; //Test configuration "DC 2" (149.154.167.40:443) from https://my.telegram.org/apps for my application, production configuration DC 2: 149.154.167.50:443
 	
-	private TLConfig config = new TLConfig(); //TODO: Better be null?
+//	private List<Datacenter> authenticatedDCs = new LinkedList<Datacenter>();
+	
+//	private TLConfig config = new TLConfig(); //TODO: Better be null?
 	
 	public MyApiState(){
 		super();
-		authenticatedDCs.add(new Datacenter(0));
-		/*
+//		authenticatedDCs.add(new Datacenter(0));
+		connections.put(1, new ConnectionInfo[]{new ConnectionInfo(1, 0, "149.154.167.50", 443)});
+		/* Former Method:
 		 * Adding a default Datacenter with ID 0, ID 0 is the primaryDC for now. Telegram will
 		 * start by looking for the primaryDC, and therefore this default Datacenter will be
 		 * asked. This happens at org.telegram.api.engine.TelegramApi.java:887 and :946.
@@ -36,22 +44,26 @@ public class MyApiState implements AbsApiState {
 
 	@Override
 	public byte[] getAuthKey(int dcId) {
-		int index = authenticatedDCs.indexOf(new Datacenter(dcId));
-		if (index != -1){ //Check if a Datacenter with the given ID exists, index is -1 if not
-			return authenticatedDCs.get(index).getAuthKey();
-		} else {
-			return null; //TODO: Returning null might be bad?
-		}
+//		int index = authenticatedDCs.indexOf(new Datacenter(dcId));
+//		if (index != -1){ //Check if a Datacenter with the given ID exists, index is -1 if not
+//			return authenticatedDCs.get(index).getAuthKey();
+//		} else {
+//			return null; //TODO: Returning null might be bad?
+//		}
+		
+		return keys.get(dcId);
 	}
 
 	@Override
 	public ConnectionInfo[] getAvailableConnections(int dcId) {
-		int index = authenticatedDCs.indexOf(new Datacenter(dcId));
-		if (index != -1){ //Check if a Datacenter with the given ID exists, index is -1 if not
-			return authenticatedDCs.get(index).getConnections();
-		} else {
-			return null; //TODO: Returning null might be bad?
-		}
+//		int index = authenticatedDCs.indexOf(new Datacenter(dcId));
+//		if (index != -1){ //Check if a Datacenter with the given ID exists, index is -1 if not
+//			return authenticatedDCs.get(index).getConnections();
+//		} else {
+//			return null; //TODO: Returning null might be bad?
+//		}
+		
+		return connections.get(dcId);
 	}
 
 //	@Override
@@ -93,41 +105,51 @@ public class MyApiState implements AbsApiState {
 
 	@Override
 	public boolean isAuthenticated(int dcId) {
-		int index = authenticatedDCs.indexOf(new Datacenter(dcId));
-		return index != -1;
+//		int index = authenticatedDCs.indexOf(new Datacenter(dcId));
+//		return index != -1;
+		
+		return this.auths.get(dcId);
 	}
 
 	@Override
 	public void putAuthKey(int dcId, byte[] key) {
-		int index = authenticatedDCs.indexOf(new Datacenter(dcId));
-		if (index != -1){ //Check if a Datacenter with the given ID exists, index is -1 if not
-			authenticatedDCs.get(index).setAuthKey(key);
-		}
+//		int index = authenticatedDCs.indexOf(new Datacenter(dcId));
+//		if (index != -1){ //Check if a Datacenter with the given ID exists, index is -1 if not
+//			authenticatedDCs.get(index).setAuthKey(key);
+//		}
+		
+		keys.put(dcId, key);
 	}
 
 	@Override
 	public void reset() {
-		authenticatedDCs.clear(); //TODO: Does that really do the trick?
+//		AuthenticateDCs.clear(); //DeprecatedTODO: Does that really do the trick?
+		auths.clear();
+		keys.clear();
 	}
 
 	@Override
 	public void resetAuth() {
-		for (int i = 0; i < authenticatedDCs.size(); i++){
-			authenticatedDCs.get(i).resetAuth();
-		}
-		//TODO: Does that really do the trick?
+//		for (int i = 0; i < authenticatedDCs.size(); i++){
+//			authenticatedDCs.get(i).resetAuth();
+//		}
+//		//DeprecatedTODO: Does that really do the trick?
+		
+		auths.clear();
 	}
 
 	@Override
 	public void setAuthenticated(int dcId, boolean auth) {
-		if (auth){
-			authenticatedDCs.add(new Datacenter(dcId));
-		} else {
-			int index = authenticatedDCs.indexOf(new Datacenter(dcId));
-			if (index != -1){ //Check if a Datacenter with the given ID exists, index is -1 if not
-				authenticatedDCs.remove(index);
-			}
-		}
+//		if (auth){
+//			authenticatedDCs.add(new Datacenter(dcId));
+//		} else {
+//			int index = authenticatedDCs.indexOf(new Datacenter(dcId));
+//			if (index != -1){ //Check if a Datacenter with the given ID exists, index is -1 if not
+//				authenticatedDCs.remove(index);
+//			}
+//		}
+		
+		auths.put(dcId, auth);
 	}
 
 	@Override
@@ -136,8 +158,20 @@ public class MyApiState implements AbsApiState {
 	}
 
 	@Override
-	public void updateSettings(TLConfig config) {
-		this.config = config;
-	}
+	public synchronized void updateSettings(TLConfig config) {
+        connections.clear();
+        HashMap<Integer, ArrayList<ConnectionInfo>> tConnections = new HashMap<Integer, ArrayList<ConnectionInfo>>();
+        int id = 0;
+        for (TLDcOption option : config.getDcOptions()) {
+            if (!tConnections.containsKey(option.getId())) {
+                tConnections.put(option.getId(), new ArrayList<ConnectionInfo>());
+            }
+            tConnections.get(option.getId()).add(new ConnectionInfo(id++, 0, option.getIpAddress(), option.getPort()));
+        }
+
+        for (Integer dc : tConnections.keySet()) {
+            connections.put(dc, tConnections.get(dc).toArray(new ConnectionInfo[0]));
+        }
+    }
 	
 }
